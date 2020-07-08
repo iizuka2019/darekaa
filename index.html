@@ -198,7 +198,14 @@ $(function(){
     <script>
     //書き込み処理
       var db = firebase.database();
-      
+	    
+      function sound()
+{
+	// [ID:sound-file]の音声ファイルを再生[play()]する
+	document.getElementById( 'sound-file' ).play() ;
+}
+	    
+	    
       var myChatAll = db.ref("/id0083/");
       function changeData(){
 	      
@@ -272,7 +279,17 @@ $(function(){
 </p>
 	  
 <hr>
-
+	  
+	  
+<p><a onClick="sound()">このテキストを押すと挨拶します！</a></p>
+ 
+<!-- 音声ファイルの読み込み 9〜10行目にURLを指定 -->
+<audio id="sound-file" preload="auto">
+	<source src="http://〜.mp3" type="audio/mp3">
+	<source src="http://〜.wav" type="audio/wav">
+</audio>
+	  
+	  
 <p class="wf-roundedmplus1c">
   <table class="device-info-table">
     <tr>
