@@ -162,7 +162,7 @@ input#play {
      
 	    
       firebase.database().ref('/user/001/music/').on('value',function(snapshot) {
-        document.getElementById("no1").innerHTML =  snapshot.child("no1").val();
+        document.getElementById("user").innerHTML =  snapshot.child("no1").val();
        
 	      
       });
@@ -197,7 +197,7 @@ input#play {
 	<audio id="sound" preload="auto">
 	    <source src="https://iizuka2019.github.io/darekaa/mp3/001.mp3" type="audio/mp3">
 	</audio>	  
-<span id="distance"  ></span>	  
+<span id="user"  ></span>	  
 </section>
     
   </body>
