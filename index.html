@@ -125,10 +125,14 @@ input#play {
 	
 	    //書き込み処理
       var db = firebase.database();
-      
-      var myChatAll = db.ref("/user/001/");
+      var min = 1 ;
+      var max = 5 ;
+var strID = Math.floor( Math.random() * (max + 1 - min) ) + min ;
+	var strUpdateUser = "/user/00" + strID + "/"
+	
+      var myChatAll = db.ref(strUpdateUser);
 	      
-	firebase.database().ref('/user/001/').once('value',function(snapshot) {
+	firebase.database().ref(strUpdateUser).once('value',function(snapshot) {
 		var strStart =snapshot.child("login").val();
 		
 		if (strStart == "0"){
