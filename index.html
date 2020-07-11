@@ -122,16 +122,54 @@ input#play {
 	    
 	    function sound()
 {
+	
+	    //書き込み処理
+      var db = firebase.database();
+      
+      var myChatAll = db.ref("/user/001/");
+	      
+	firebase.database().ref('/user/001/').once('value',function(snapshot) {
+		var strStart =snapshot.child("login").val();
+		
+		if (strStart == "0"){
+			myChatAll.update({login:1});
+		}else{
+			myChatAll.update({login:0});
+		}
+		
+	});
+
 	// [ID:sound-file]の音声ファイルを再生[play()]する
 	document.getElementById( 'sound' ).play() ;
 }
 	    
-	    
+  var firebaseConfig = {
+    apiKey: "AIzaSyBkfcyObni5G-iSeC5LTWbS2vhACJNyC6c",
+    authDomain: "runnerdb-3ad18.firebaseapp.com",
+    databaseURL: "https://runnerdb-3ad18.firebaseio.com",
+    projectId: "runnerdb-3ad18",
+    storageBucket: "runnerdb-3ad18.appspot.com",
+    messagingSenderId: "457517150146",
+    appId: "1:457517150146:web:6356f8ac0d737d12fc705b"
+  };	 
+        firebase.initializeApp(config);
     </script>
    
     
-    
+
+    <script>
+    //読み込み処理
+     
+	    
+      firebase.database().ref('/user/001/music/').on('value',function(snapshot) {
+        document.getElementById("no1").innerHTML =  snapshot.child("no1").val();
+       
+	      
+      });
+
+    </script>    
 	  
+  
 	  
 <section class="container">
 
@@ -154,11 +192,12 @@ input#play {
 	<hr>
 	<p class="btn"><a onClick="sound()">誰かを応援</a></p>
 
+	  <input type="button" class="btnControls" id="musicnobutton" value="◁" onclick="changeDataMusicLeft()">
+	  
 	<audio id="sound" preload="auto">
 	    <source src="https://iizuka2019.github.io/darekaa/mp3/001.mp3" type="audio/mp3">
 	</audio>	  
-
-  
+<span id="distance"  ></span>	  
 </section>
     
   </body>
