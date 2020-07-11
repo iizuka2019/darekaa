@@ -192,36 +192,12 @@ $(function(){
 	      
       });
 
-      firebase.database().ref('/myinfo/').once('value',function(snapshot) {
-        $( document ).ready(function() { // 6,32 5,38 2,34
-          var svg=document.getElementById('test-circle7');
-          while (svg.firstChild)
-            svg.removeChild(svg.firstChild);
-          
-            $("#test-circle7").circliful({
-                animation: 0,
-                animationStep: 1,
-                animateInView: true,
-                percent: strDataW,
-                textSize: 28,
-                textStyle: 'font-size: 12px;',
-                textColor: '#666',
-                progressColor: {10: '#00A0E9', 20: '#009E96', 30: '#009944', 40: '#8FC31F', 50: '#FFF100', 60: '#F39800', 70: '#EA5532', 80: '#EA5532', 90:'#E91E63', 100:'#f44336'}
-            });
-          });
-      });
     </script>
     
 	  
     <script>
     //書き込み処理
       var db = firebase.database();
-	    
-      function sound()
-{
-	// [ID:sound-file]の音声ファイルを再生[play()]する
-	document.getElementById( 'sound-file' ).play() ;
-}
 	    
 	    
       var myChatAll = db.ref("/id0083/");
