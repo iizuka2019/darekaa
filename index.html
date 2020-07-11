@@ -107,8 +107,26 @@ input#play {
     
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     
-    
     <script>
+(function (window, $) {
+  'use strict';
+
+  $.fn.useSound = function (_event, _id) {
+    var se = $(_id);
+    this.on(_event, function(){
+      se[0].currentTime = 0;
+      se[0].play();
+    });
+    return this;
+  };
+
+})(this, this.jQuery);
+
+$('.btn a').useSound('mousedown touchstart', '#sound');	    
+	    </script>
+    <script>
+	    
+	    
 $(function(){
 	var aTags = $('a'); //ページ内のaタグ群を取得。aTagsに配列として代入。
 	aTags.each(function(){ //全てのaタグについて処理
@@ -277,8 +295,15 @@ $(function(){
 		</tr>
 	</table>	
 </p>
-	  
-<hr>
+
+	<hr>
+	<p class="btn"><a onClick="sound()">クリック</a></p>
+
+	<audio id="sound" preload="auto">
+	    <source src="http://idotdesign.net/wp-content/themes/idotdesign/sound/sound.mp3" type="audio/mp3">
+	    <source src="http://idotdesign.net/wp-content/themes/idotdesign/sound/sound.wav" type="audio/wav">
+	</audio>	  
+	<hr>
 	  
 
 <audio>
