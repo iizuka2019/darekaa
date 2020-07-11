@@ -121,22 +121,22 @@ input#play {
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     
     <script>
-(function (window, $) {
-  'use strict';
+	(function (window, $) {
+	'use strict';
 
-  $.fn.useSound = function (_event, _id) {
-    var se = $(_id);
-    this.on(_event, function(){
-      se[0].currentTime = 0;
-      se[0].play();
-    });
-    return this;
-  };
+	$.fn.useSound = function (_event, _id) {
+	var se = $(_id);
+	this.on(_event, function(){
+	se[0].currentTime = 0;
+	se[0].play();
+	});
+	return this;
+	};
 
-})(this, this.jQuery);
+	})(this, this.jQuery);
 
-$('.btn a').useSound('mousedown touchstart', '#sound');	    
-	    </script>
+	$('.btn a').useSound('mousedown touchstart', '#sound');	    
+    </script>
     <script>
 	    
 	   
@@ -280,20 +280,9 @@ $('.btn a').useSound('mousedown touchstart', '#sound');
 	    <source src="https://iizuka2019.github.io/darekaa/line-girl1-sonotyoushisonotyousi1.mp3" type="audio/mp3">
 	</audio>	  
 	<hr>
-	  
 
-<audio>
-  <source src="https://iizuka2019.github.io/darekaa/line-girl1-sonotyoushisonotyousi1.mp3">
-  あなたのブラウザーは <code>audio</code> 要素をサポートしていません。
-</audio>
 	  
-	  
-<p class="btn"><a onclick="sound()">クリック</a></p>
- 
-<audio id="sound" preload="auto">
-    <source src="https://iizuka2019.github.io/darekaa/line-girl1-sonotyoushisonotyousi1.mp3" type="audio/mp3">
-</audio>
-	  
+	 
 	  
 <p class="wf-roundedmplus1c">
   <table class="device-info-table">
