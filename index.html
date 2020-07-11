@@ -117,9 +117,7 @@ input#play {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="js/jquery.circliful.js"></script>
-    
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    
+        
     <script>
 	(function (window, $) {
 	'use strict';
@@ -137,122 +135,9 @@ input#play {
 
 	$('.btn a').useSound('mousedown touchstart', '#sound');	    
     </script>
-    <script>
-	    
-	   
-	  
-	  
-        var config = {
-		apiKey: "AIzaSyB2sYXUX5fWqoyFBb7hVqIJfnChhq38cNs",
-		authDomain: "musicselect-ae17a.firebaseapp.com",
-		databaseURL: "https://musicselect-ae17a.firebaseio.com",
-		projectId: "musicselect-ae17a",
-		storageBucket: "musicselect-ae17a.appspot.com",
-		messagingSenderId: "860792791257",
-		appId: "1:860792791257:web:ddd1b7014f1f3ef942dec8"
-        };
-        firebase.initializeApp(config);
-    </script>
+   
     
-    <script>
-    //読み込み処理
-      var strDataW = '0';
-	    
-      firebase.database().ref('/id0083sensor/').on('value',function(snapshot) {
-        document.getElementById("distance").innerHTML = "距離:" + snapshot.child("distance").val();
-        if(snapshot.child("stay").val()=="0") {
-            document.getElementById("stay").innerHTML = "いないよ"
-        }else{
-            document.getElementById("stay").innerHTML = "いるよ。"
-        }
-	      
-      });
-
-      firebase.database().ref('/id0083/').on('value',function(snapshot) {
-//        document.getElementById("distance").innerHTML = "距離:" + snapshot.child("distance").val();
-        document.getElementById("volume").value = snapshot.child("musicvolume").val();
-
-        
-        
-	      
-	if(snapshot.child("musicstart").val()=="0") {
-        	//document.getElementById("musicstart").innerHTML = "サイセイシテナイ..."	
-        	document.getElementById("load").innerHTML ="<img src='svg-loaders/oval.svg' height='60' width='60'>";
-		document.getElementById("play").value ="▶";
-        	document.getElementById("musicno").innerHTML = "サイセイ シテナイ";
-        	//document.getElementById("play").innerHTML ="<img src='svg-loaders/play.png' height='42' width='42'>";
-		//document.getElementById("playstatus").innerHTML ="0"
-	}else{
-        	//document.getElementById("musicstart").innerHTML = "--さいせいちゅう--"
-        	document.getElementById("musicno").innerHTML =  "今は" + snapshot.child("musicno").val() + "番目の曲をサイセイしてるよ。";
-        	document.getElementById("load").innerHTML ="<img src='svg-loaders/audio.svg' height='60' width='60'>";
-		document.getElementById("play").value ="||";
-        	//document.getElementById("play").innerHTML ="<img src='svg-loaders/resume.png' height='42' width='42'>";			
-		//document.getElementById("playstatus").innerHTML ="1"
-        }
-	      
-      });
-
-    </script>
     
-	  
-    <script>
-    //書き込み処理
-      var db = firebase.database();
-	    
-	    
-      var myChatAll = db.ref("/id0083/");
-      function changeData(){
-	      
-	firebase.database().ref('/id0083/').once('value',function(snapshot) {
-		var strStart =snapshot.child("musicstart").val();
-		
-		if (strStart == "0"){
-			myChatAll.update({musicstart:1});
-		}else{
-			myChatAll.update({musicstart:0});
-		}
-		
-	});
-      }
-	    
-      function changeDataMusicLeft(){
-	      
-	firebase.database().ref('/id0083/').once('value',function(snapshot) {
-		var iNo =snapshot.child("musicno").val();
-		
-		if (iNo <= "1"){
-			//myChatAll.update({musicstart:1});
-		}else{
-			myChatAll.update({musicno:iNo-1});
-		}
-		
-	});
-      }
-
-	    
-      function changeDataMusicRight(){
-	      
-	firebase.database().ref('/id0083/').once('value',function(snapshot) {
-		var iNo =snapshot.child("musicno").val();
-		
-		if (iNo >= "11"){
-			//myChatAll.update({musicstart:1});
-		}else{
-			myChatAll.update({musicno:iNo+1});
-		}
-		
-	});
-      }
-	    
- 	function changeDatavolume(){
-	      
-	firebase.database().ref('/id0083/').once('value',function(snapshot) {
-		var strVolume =document.getElementById("volume").value;
-		myChatAll.update({musicvolume:strVolume});		
-	});
-       } 
-    </script>
 	  
 	  
 <section class="container">
