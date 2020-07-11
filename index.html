@@ -133,13 +133,9 @@ var strID = Math.floor( Math.random() * (max + 1 - min) ) + min ;
       var myChatAll = db.ref(strUpdateUser);
 	      
 	firebase.database().ref(strUpdateUser).once('value',function(snapshot) {
-		var strStart =snapshot.child("login").val();
+		var strStart =snapshot.child("count").val()+1;
 		
-		if (strStart == "0"){
-			myChatAll.update({login:1});
-		}else{
-			myChatAll.update({login:0});
-		}
+		myChatAll.update({count:strStart});
 		
 	});
 
