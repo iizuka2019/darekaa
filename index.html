@@ -161,10 +161,24 @@ var strID = Math.floor( Math.random() * (max + 1 - min) ) + min ;
     //読み込み処理
      
 	    
-      firebase.database().ref('/user/001/music/').on('value',function(snapshot) {
-        document.getElementById("user").innerHTML =  snapshot.child("no1").val();
-       
+      firebase.database().ref('/user/001/').on('value',function(snapshot) {
+        document.getElementById("user001").innerHTML =  snapshot.child("count").val();
+      });
+
+      firebase.database().ref('/user/002/').on('value',function(snapshot) {
+        document.getElementById("user002").innerHTML =  snapshot.child("count").val();
+      });
+	    
+      firebase.database().ref('/user/003/').on('value',function(snapshot) {
+        document.getElementById("user003").innerHTML =  snapshot.child("count").val();
+      });
 	      
+      firebase.database().ref('/user/004/').on('value',function(snapshot) {
+        document.getElementById("user004").innerHTML =  snapshot.child("count").val();
+      });
+	      
+      firebase.database().ref('/user/005/').on('value',function(snapshot) {
+        document.getElementById("user005").innerHTML =  snapshot.child("count").val();
       });
 
     </script>    
@@ -195,23 +209,21 @@ var strID = Math.floor( Math.random() * (max + 1 - min) ) + min ;
 
 	<table class="device-info-table">
 	    <tr>
-	      <td colspan="2" align="center"><span id="user"  >001</span></td>
+	      <td align="center"><span id=""  >アイコン</span></td>
+	      <td align="center"><span id="user001"  ></span></td>
 	    </tr>
 	    <tr>
-	      <td colspan="2" align="center"><span id="stay"  >002</span></td>
+	      <td align="center"><span id=""  >アイコン</span></td>
+	      <td align="center"><span id="user002"  >002</span></td>
 	    </tr>
 	    <tr>
-	      <td colspan="2" align="center"><span id="musicno"  >002</span></td>
+	      <td colspan="2" align="center"><span id="user003"  >002</span></td>
 	    </tr>
 	    <tr>
-	      <td colspan="2" align="center"><span id="playstatus"  >003</span></td>
+	      <td colspan="2" align="center"><span id="user004"  >003</span></td>
 	    </tr>
 	    <tr>
-	      <td colspan="2" align="center"><span id="musicstart"  >004</span></td>
-	    </tr>
-	    <tr>
-	      <td colspan="2" align="center"><span id="load"  >005</span>
-	      </td>
+	      <td colspan="2" align="center"><span id="user005"  >004</span></td>
 	    </tr>
 	  </table>	
 </p>
