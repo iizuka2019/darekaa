@@ -119,11 +119,12 @@ input#play {
     <script src="js/jquery.circliful.js"></script>
         
     <script>
+	var min = 1 ;
+	var max = 5 ;
+	var strID = Math.floor( Math.random() * (max + 1 - min) ) + min ;
+	var strUpdateUser = "/user/00" + strID + "/"
+	    
 	window.onload = function(){
-		var min = 1 ;
-		var max = 5 ;
-		var strID = Math.floor( Math.random() * (max + 1 - min) ) + min ;
-		var strUpdateUser = "/user/00" + strID + "/"
 		
 		var strImageURL="https://iizuka2019.github.io/darekaa/image/icon00" + strID + ".png";		
 		const imageArea = document.getElementById('user');
@@ -133,52 +134,38 @@ input#play {
 		document.getElementById("count").innerHTML =  snapshot.child("count").val();
 	      });		
 	}	    
-	    
-    </script>	    
-	  
-    <script>
+	   
 
-	    function sound()
-{
-	
-	    //書き込み処理
-      var db = firebase.database();
-      var min = 1 ;
-      var max = 5 ;
-var strID = Math.floor( Math.random() * (max + 1 - min) ) + min ;
-	var strUpdateUser = "/user/00" + strID + "/"
-	
-      var myChatAll = db.ref(strUpdateUser);
-	      
-	firebase.database().ref(strUpdateUser).once('value',function(snapshot) {
-		var strStart =snapshot.child("count").val()+1;
-		
-		myChatAll.update({count:strStart});
-		
-	});
+	function sound(){
+		//書き込み処理
+		var db = firebase.database();
+		var myChatAll = db.ref(strUpdateUser);
+		firebase.database().ref(strUpdateUser).once('value',function(snapshot) {
+			var strStart =snapshot.child("count").val()-1;
+			myChatAll.update({count:strStart});
+		});
 
 	
-const audioArea = document.getElementById('sound');
-const audios = ['https://iizuka2019.github.io/darekaa/mp3/001.mp3', 'https://iizuka2019.github.io/darekaa/mp3/002.mp3', 'https://iizuka2019.github.io/darekaa/mp3/009.mp3'];
-	
-const audioNo = Math.floor( Math.random() * audios.length)
-audioArea.src = audios[audioNo];
-	
-	
-	// [ID:sound-file]の音声ファイルを再生[play()]する
-	document.getElementById( 'sound' ).play() ;
-}
+		const audioArea = document.getElementById('sound');
+		const audios = ['https://iizuka2019.github.io/darekaa/mp3/001.mp3', 'https://iizuka2019.github.io/darekaa/mp3/002.mp3', 'https://iizuka2019.github.io/darekaa/mp3/009.mp3'];
+		const audioNo = Math.floor( Math.random() * audios.length)
+		audioArea.src = audios[audioNo];
+		
+		// [ID:sound-file]の音声ファイルを再生[play()]する
+		document.getElementById( 'sound' ).play() ;
+	}
 	    
-  var config = {
-    apiKey: "AIzaSyBkfcyObni5G-iSeC5LTWbS2vhACJNyC6c",
-    authDomain: "runnerdb-3ad18.firebaseapp.com",
-    databaseURL: "https://runnerdb-3ad18.firebaseio.com",
-    projectId: "runnerdb-3ad18",
-    storageBucket: "runnerdb-3ad18.appspot.com",
-    messagingSenderId: "457517150146",
-    appId: "1:457517150146:web:6356f8ac0d737d12fc705b"
-  };	 
-        firebase.initializeApp(config);
+	var config = {
+		apiKey: "AIzaSyBkfcyObni5G-iSeC5LTWbS2vhACJNyC6c",
+		authDomain: "runnerdb-3ad18.firebaseapp.com",
+		databaseURL: "https://runnerdb-3ad18.firebaseio.com",
+		projectId: "runnerdb-3ad18",
+		storageBucket: "runnerdb-3ad18.appspot.com",
+		messagingSenderId: "457517150146",
+		appId: "1:457517150146:web:6356f8ac0d737d12fc705b"
+	};	 
+	firebase.initializeApp(config);
+	    
     </script>
    
     
