@@ -178,6 +178,28 @@ input#play {
         document.getElementById("user005").innerHTML =  snapshot.child("count").val();
       });
 
+	    
+  function sound2(){
+
+	firebase.database().ref(strUpdateUser).once('value',function(snapshot) {
+		document.getElementById("count").innerHTML =  snapshot.child("count").val();
+		var iCount =snapshot.child("count").val();
+		var db = firebase.database();
+		var myChatAll = db.ref(strUpdateUser);
+		if(snapshot.child("count").val()>0){
+			var strStart = iCount -1 ;
+			myChatAll.update({count:strStart});
+
+			const audioArea = document.getElementById('sound');
+			const audios = ['https://iizuka2019.github.io/darekaa/mp3/001.mp3', 'https://iizuka2019.github.io/darekaa/mp3/002.mp3', 'https://iizuka2019.github.io/darekaa/mp3/009.mp3'];
+			const audioNo = Math.floor( Math.random() * audios.length)
+			audioArea.src = audios[audioNo];
+
+			document.getElementById( 'sound' ).play() ;				
+		}
+	});		
+   } 
+	    
     </script>    
 	  
   
@@ -212,6 +234,7 @@ input#play {
 	<table class="device-info-table">
 		<tr>
 			<td colspan="2" align="center"><p class="btn"><a onClick="sound()">ランニング スタート</a></p></td>
+			<td colspan="2" align="center"><p class="btn"><a onClick="sound2()">ランニング スタート2</a></p></td>
 			
 			<audio id="sound" preload="auto">
 			    <source src="" type="audio/mp3">
@@ -222,9 +245,8 @@ input#play {
 	  
 <script>
   var count = 0;
+	
   var countup = function sound(){
-    console.log(count++);
-
 
 	firebase.database().ref(strUpdateUser).once('value',function(snapshot) {
 		document.getElementById("count").innerHTML =  snapshot.child("count").val();
@@ -245,6 +267,7 @@ input#play {
 	});		
    } 
   setInterval(countup, 6000);
+	
 </script>
 	  
 </p>
