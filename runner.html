@@ -162,7 +162,42 @@ input#play {
 		appId: "1:457517150146:web:6356f8ac0d737d12fc705b"
 	};	 
 	firebase.initializeApp(config);
+
 	    
+
+	function sound(){
+
+		var db = firebase.database();
+		var myChatAll = db.ref(strUpdateUser);
+		firebase.database().ref(strUpdateUser).once('value',function(snapshot) {
+			if(snapshot.child("count").val()>=0){
+				var strStart =snapshot.child("count").val()-1;
+				myChatAll.update({count:strStart});
+
+				const audioArea = document.getElementById('sound');
+				const audios = ['https://iizuka2019.github.io/darekaa/mp3/001.mp3', 'https://iizuka2019.github.io/darekaa/mp3/002.mp3', 'https://iizuka2019.github.io/darekaa/mp3/009.mp3'];
+				const audioNo = Math.floor( Math.random() * audios.length)
+				audioArea.src = audios[audioNo];
+
+				// [ID:sound-file]の音声ファイルを再生[play()]する
+				document.getElementById( 'sound' ).play() ;				
+			}
+		});
+
+	});
+
+
+	const audioArea = document.getElementById('sound');
+	const audios = ['https://iizuka2019.github.io/darekaa/mp3/001.mp3', 'https://iizuka2019.github.io/darekaa/mp3/002.mp3', 'https://iizuka2019.github.io/darekaa/mp3/009.mp3'];
+
+	const audioNo = Math.floor( Math.random() * audios.length)
+	audioArea.src = audios[audioNo];
+
+
+	// [ID:sound-file]の音声ファイルを再生[play()]する
+	document.getElementById( 'sound' ).play() ;
+	}
+
     </script>
    
     
