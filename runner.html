@@ -150,38 +150,6 @@ input#play {
 
 	    
 
-	function sound(){
-
-		var db = firebase.database();
-		var myChatAll = db.ref(strUpdateUser);
-		firebase.database().ref(strUpdateUser).once('value',function(snapshot) {
-			if(snapshot.child("count").val()>=0){
-				var strStart =snapshot.child("count").val()-1;
-				myChatAll.update({count:strStart});
-
-				const audioArea = document.getElementById('sound');
-				const audios = ['https://iizuka2019.github.io/darekaa/mp3/001.mp3', 'https://iizuka2019.github.io/darekaa/mp3/002.mp3', 'https://iizuka2019.github.io/darekaa/mp3/009.mp3'];
-				const audioNo = Math.floor( Math.random() * audios.length)
-				audioArea.src = audios[audioNo];
-
-				// [ID:sound-file]の音声ファイルを再生[play()]する
-				document.getElementById( 'sound' ).play() ;				
-			}
-		});
-
-
-
-	const audioArea = document.getElementById('sound');
-	const audios = ['https://iizuka2019.github.io/darekaa/mp3/001.mp3', 'https://iizuka2019.github.io/darekaa/mp3/002.mp3', 'https://iizuka2019.github.io/darekaa/mp3/009.mp3'];
-
-	const audioNo = Math.floor( Math.random() * audios.length)
-	audioArea.src = audios[audioNo];
-
-
-	// [ID:sound-file]の音声ファイルを再生[play()]する
-	document.getElementById( 'sound' ).play() ;
-	}
-
     </script>
    
     
@@ -242,7 +210,7 @@ input#play {
 
 	<table class="device-info-table">
 		<tr>
-			<td colspan="2" align="center"><p class="btn"><a onClick="sound()">誰かを応援!</a></p></td>
+			<td colspan="2" align="center"><p class="btn"><a onClick="sound()">ランニング スタート</a></p></td>
 			
 			<audio id="sound" preload="auto">
 			    <source src="" type="audio/mp3">
@@ -253,7 +221,7 @@ input#play {
 	  
 <script>
   var count = 0;
-  var countup = function(){
+  var countup = function sound(){
     console.log(count++);
 
 
@@ -262,7 +230,7 @@ input#play {
 		var iCount =snapshot.child("count").val();
 		var db = firebase.database();
 		var myChatAll = db.ref(strUpdateUser);
-		if(snapshot.child("count").val()>=0){
+		if(snapshot.child("count").val()>0){
 			var strStart = iCount -1 ;
 			myChatAll.update({count:strStart});
 
@@ -271,12 +239,11 @@ input#play {
 			const audioNo = Math.floor( Math.random() * audios.length)
 			audioArea.src = audios[audioNo];
 
-			// [ID:sound-file]の音声ファイルを再生[play()]する
 			document.getElementById( 'sound' ).play() ;				
 		}
 	});		
    } 
-  setInterval(countup, 1000);
+  setInterval(countup, 6000);
 </script>
 	  
 	<table class="device-info-table">
