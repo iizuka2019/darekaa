@@ -130,24 +130,8 @@ input#play {
 		const imageArea = document.getElementById('user');
 		imageArea.src = strImageURL;		    
 		
-		firebase.database().ref(strUpdateUser).on('value',function(snapshot) {
+		firebase.database().ref(strUpdateUser).once('value',function(snapshot) {
 			document.getElementById("count").innerHTML =  snapshot.child("count").val();
-			var iCount =snapshot.child("count").val();
-			var db = firebase.database();
-			var myChatAll = db.ref(strUpdateUser);
-				if(snapshot.child("count").val()>=0){
-					var strStart = iCount -1 ;
-					myChatAll.update({count:strStart});
-
-					const audioArea = document.getElementById('sound');
-					const audios = ['https://iizuka2019.github.io/darekaa/mp3/001.mp3', 'https://iizuka2019.github.io/darekaa/mp3/002.mp3', 'https://iizuka2019.github.io/darekaa/mp3/009.mp3'];
-					const audioNo = Math.floor( Math.random() * audios.length)
-					audioArea.src = audios[audioNo];
-
-					// [ID:sound-file]の音声ファイルを再生[play()]する
-					document.getElementById( 'sound' ).play() ;				
-				}
-			
 			
 	      	});		
 		
@@ -266,7 +250,35 @@ input#play {
 			
 		</tr>
 	</table>
+	  
+<script>
+  var count = 0;
+  var countup = function(){
+    console.log(count++);
 
+
+	firebase.database().ref(strUpdateUser).once('value',function(snapshot) {
+		document.getElementById("count").innerHTML =  snapshot.child("count").val();
+		var iCount =snapshot.child("count").val();
+		var db = firebase.database();
+		var myChatAll = db.ref(strUpdateUser);
+		if(snapshot.child("count").val()>=0){
+			var strStart = iCount -1 ;
+			myChatAll.update({count:strStart});
+
+			const audioArea = document.getElementById('sound');
+			const audios = ['https://iizuka2019.github.io/darekaa/mp3/001.mp3', 'https://iizuka2019.github.io/darekaa/mp3/002.mp3', 'https://iizuka2019.github.io/darekaa/mp3/009.mp3'];
+			const audioNo = Math.floor( Math.random() * audios.length)
+			audioArea.src = audios[audioNo];
+
+			// [ID:sound-file]の音声ファイルを再生[play()]する
+			document.getElementById( 'sound' ).play() ;				
+		}
+	});		
+   } 
+  setInterval(countup, 1000);
+</script>
+	  
 	<table class="device-info-table">
 	    <tr>
 	      <td align="center">応援される人</td>
