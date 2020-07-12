@@ -132,10 +132,11 @@ input#play {
 		
 		firebase.database().ref(strUpdateUser).on('value',function(snapshot) {
 			document.getElementById("count").innerHTML =  snapshot.child("count").val();
+			var iCount =snapshot.child("count").val();
 			var db = firebase.database();
 			var myChatAll = db.ref(strUpdateUser);
 				if(snapshot.child("count").val()>=0){
-					var strStart =snapshot.child("count").val()-1;
+					var strStart = iCount -1 ;
 					myChatAll.update({count:strStart});
 
 					const audioArea = document.getElementById('sound');
